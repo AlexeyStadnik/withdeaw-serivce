@@ -32,7 +32,7 @@ public class WalletServiceImpl implements WalletService {
     @Override
     @Transactional
     public void withdraw(Long walletId, WithdrawModel withdrawModel) {
-        WalletEntity wallet = walletRepository.getOne(walletId);
+        WalletEntity wallet = walletRepository.getWalletForUpdate(walletId);
 
         if (wallet.getBalance() < withdrawModel.getWithdrawAmount()) {
             throw new BadRequestException("Invalid wallet balance");

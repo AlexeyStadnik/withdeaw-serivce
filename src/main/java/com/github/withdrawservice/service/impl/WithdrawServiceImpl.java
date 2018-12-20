@@ -27,7 +27,6 @@ public class WithdrawServiceImpl implements WithdrawService {
                 .requestId(requestId)
                 .walletId(walletId)
                 .withdrawAmount(withdrawAmount)
-                .build()
-        );
+                .build());
     }
 }

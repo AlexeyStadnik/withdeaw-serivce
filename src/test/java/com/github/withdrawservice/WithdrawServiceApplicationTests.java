@@ -80,6 +80,13 @@ public class WithdrawServiceApplicationTests {
                 //then
                 //bad request response
                 .andExpect(status().isBadRequest());
+
+        //then
+        //only single withdraw should be successful
+        mvc.perform(get("/wallets/" + WALLET_ID)
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.balance", is(40)));
     }
 
     static class Initializer
