@@ -1,12 +1,14 @@
 package com.github.withdrawservice.model;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 
 import java.util.UUID;
 
+@Builder
 @Data
 @EqualsAndHashCode
+@AllArgsConstructor
+@NoArgsConstructor
 public class WithdrawModel {
 
     private UUID requestId;
