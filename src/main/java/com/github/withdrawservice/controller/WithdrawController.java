@@ -1,5 +1,6 @@
 package com.github.withdrawservice.controller;
 
+import com.github.withdrawservice.entity.WalletEntity;
 import com.github.withdrawservice.model.WithdrawModel;
 import com.github.withdrawservice.service.WalletService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +25,16 @@ public class WithdrawController {
     @RequestMapping(value = "/wallets/{walletId}/withdraw",
             produces = {"application/json"},
             method = RequestMethod.POST)
-    ResponseEntity<Void> deleteItem(@PathVariable("walletId") Long walletId, @RequestBody WithdrawModel withdrawModel) {
+    ResponseEntity<Void> withdraw(@PathVariable("walletId") Long walletId, @RequestBody WithdrawModel withdrawModel) {
         walletService.withdraw(walletId, withdrawModel);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @RequestMapping(value = "/wallets/{walletId}",
+            produces = {"application/json"},
+            method = RequestMethod.GET)
+    ResponseEntity<WalletEntity> retrieveWallet(@PathVariable("walletId") Long walletId) {
+        WalletEntity walletEntity = walletService.retrieveWallet(walletId);
+        return new ResponseEntity<>(walletEntity, HttpStatus.OK);
     }
 }

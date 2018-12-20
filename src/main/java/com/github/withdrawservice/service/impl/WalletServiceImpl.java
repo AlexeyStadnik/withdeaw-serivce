@@ -44,4 +44,11 @@ public class WalletServiceImpl implements WalletService {
         withdrawService.saveWithdrawLog(walletId, withdrawModel.getRequestId(),
                 withdrawModel.getWithdrawAmount());
     }
+
+    @Override
+    @Transactional
+    public WalletEntity retrieveWallet(Long walletId) {
+        return walletRepository.findById(walletId)
+                .orElseThrow(() -> new BadRequestException("No wallet with provided id"));
+    }
 }

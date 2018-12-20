@@ -29,3 +29,17 @@ db:
   host: localhost
   user: postgres
   password: password
+
+---
+spring.profiles: docker
+
+server:
+  port: 8082
+
+db:
+  name: withdraw_service
+  host: postgres
+  user: postgres
+  password: password
+
+
