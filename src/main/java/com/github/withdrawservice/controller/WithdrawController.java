@@ -1,7 +1,7 @@
 package com.github.withdrawservice.controller;
 
 import com.github.withdrawservice.model.WithdrawModel;
-import com.github.withdrawservice.service.AccountService;
+import com.github.withdrawservice.service.WalletService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,23 +11,21 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import java.util.UUID;
-
 @Controller
 public class WithdrawController {
 
-    private final AccountService accountService;
+    private final WalletService walletService;
 
     @Autowired
-    public WithdrawController(AccountService accountService) {
-        this.accountService = accountService;
+    public WithdrawController(WalletService walletService) {
+        this.walletService = walletService;
     }
 
-    @RequestMapping(value = "/accounts/{accountId}/withdraw",
+    @RequestMapping(value = "/wallets/{walletId}/withdraw",
             produces = {"application/json"},
             method = RequestMethod.POST)
-    ResponseEntity<Void> deleteItem(@PathVariable("accountId") UUID accountId, @RequestBody WithdrawModel withdrawModel) {
-        accountService.withdraw(accountId, withdrawModel);
+    ResponseEntity<Void> deleteItem(@PathVariable("walletId") Long walletId, @RequestBody WithdrawModel withdrawModel) {
+        walletService.withdraw(walletId, withdrawModel);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

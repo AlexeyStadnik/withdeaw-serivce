@@ -1,0 +1,31 @@
+service.name: withdraw-service
+
+
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://${db.host}:${db.port:5432}/${db.name}
+    username: ${db.user}
+    password: ${db.password}
+
+  jpa:
+    database: postgresql
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: true
+
+---
+spring.profiles: local
+
+server:
+  port: 8082
+
+db:
+  name: withdraw_service
+  host: localhost
+  user: postgres
+  password: password
