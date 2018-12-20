@@ -4,6 +4,7 @@ import com.github.withdrawservice.entity.BankAccountEntity;
 import com.github.withdrawservice.entity.WalletEntity;
 import com.github.withdrawservice.repository.BankAccountRepository;
 import com.github.withdrawservice.repository.WalletRepository;
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -33,7 +34,7 @@ public class WithdrawServiceApplication {
 
         @ResponseBody
         @ResponseStatus(HttpStatus.BAD_REQUEST)
-        @ExceptionHandler({BadRequestException.class, EntityNotFoundException.class})
+        @ExceptionHandler({BadRequestException.class, EntityNotFoundException.class, ConstraintViolationException.class})
         public ValidationModel processValidationError(final RuntimeException ex) {
             return new ValidationModel(ex.getMessage());
         }

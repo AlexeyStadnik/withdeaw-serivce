@@ -9,6 +9,6 @@ import java.util.UUID;
 @EqualsAndHashCode
 public class WithdrawModel {
 
-    private UUID withdrawId;
+    private UUID requestId;
     private Long withdrawAmount;
 }
